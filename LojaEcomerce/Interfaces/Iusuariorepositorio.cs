@@ -2,7 +2,7 @@
 
 namespace LojaEcomerce.Interfaces
 {
-    public interface Iusuariorepositorio
+    public interface IUsuarioRepositorio
     {
         //a interface não contem código apenas a promessa do que deve
         //ser feito

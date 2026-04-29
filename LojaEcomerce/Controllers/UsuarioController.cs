@@ -9,11 +9,11 @@ namespace LojaEcomerce.Controllers
 {
     public class UsuarioController : Controller
     {
-        private readonly Iusuariorepositorio _usuariorepositorio;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
 
-        public UsuarioController(Iusuariorepositorio usuariorepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
         {
-            _usuariorepositorio = usuariorepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
         [HttpGet]
@@ -21,24 +21,23 @@ namespace LojaEcomerce.Controllers
         {
             return View();
         }
-
+        //Método Login
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel user)
         {
-            if (ModelState.IsValid) return View(user);
-            var Usuario = _usuariorepositorio.Validar(user.Email, user.Senha);
+            if (!ModelState.IsValid) return View(user);
+            var usuario = _usuarioRepositorio.Validar(user.Email, user.Senha);
 
-            if (Usuario != null)
+            if (usuario != null)
             {
-                //inicia a criacao de uma lista de claims(declarações)
-                // pense com as informações que compoe o cracha
-
+                // inicia a criaçao de uma lista de claims(declarações) 
+                // pense como as informações que compõe o cracha 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name , Usuario.Nome),
-                    new Claim(ClaimTypes.Email, Usuario.Email),
-                    new Claim("Nivelacesso", Usuario.Nivel),
-                    new Claim("UsuarioID", Usuario.Id.ToString())
+                    new Claim(ClaimTypes.Name, usuario.Nome),
+                    new Claim(ClaimTypes.Email, usuario.Email),
+                    new Claim("NivelAcesso", usuario.Nivel),
+                    new Claim("UsuarioId",usuario.Id.ToString())
                 };
                 var identidade = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -46,10 +45,18 @@ namespace LojaEcomerce.Controllers
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(identidade),
                     new AuthenticationProperties { IsPersistent = false });
-                    return RedirectToAction("Index", "Home");
-            }
 
-            return View();
+                return RedirectToAction("Index", "Home");
+            }
+            ModelState.AddModelError("", "Email ou Senha Inválidos");
+            return View(user);
+        }
+        //Método Sair
+        public async Task<IActionResult> Sair()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
         }
     }
 }
+

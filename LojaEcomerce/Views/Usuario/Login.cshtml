@@ -1,0 +1,39 @@
+﻿@model LojaEcomerce.Models.LoginViewModel
+
+@{
+	ViewData["Title"] = "Login";
+}
+
+
+@* Centraliza o conteúdo da tela*@
+<div>
+	@* Define a largura maxima do container *@
+	<div>
+		@* Estrutura que vai receber o form *@
+		<div>
+			@* Estrutura do cabeçalho*@
+			<div>
+				<h3>Login</h3>
+			</div>
+			<div>
+				<form asp-action="Login" method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger small mb-3"> </div>
+					<div>
+						<label asp-for="Email"> </label>
+						<input asp-for="Email" placeholder="email@email.com"/>
+						<span asp-validation-for="Email"></span>
+					</div>
+					<div>
+						<label asp-for="Senha"> </label>
+						<input asp-for="Senha" placeholder="Senha" type="password" />
+						<span asp-validation-for="Senha"></span>
+					</div>
+					<div>
+					<button>Entrar</button>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

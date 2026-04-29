@@ -1,0 +1,24 @@
+﻿@model LojaEcomerce.Models.Pedido
+
+<div class="container mt-5">
+    <div class="alert alert-success text-center">
+        <h3>Pedido Confirmado!</h3>
+        <hr/>
+        <p><strong>Tamanho: </strong>@Model.tamanho</p>
+        <p><strong>Sabor: </strong>@Model.sabor</p>
+        <p><strong>Combos: </strong>@Model.carnes</p>
+        <p><strong>Adicionais: </strong>@(Model.adicionais.Any() ? string.Join(", ", Model.adicionais): "Nenhum")</p>
+        <!-- 
+            - Se a lista tiver pelo menos um item (.Any()),
+            junta todos os itens em uma string separada por vírgula (string.Join)
+            - Se a lista estiver vazia, exibe "Nenhum"
+        -->
+        <p><strong>Horário do pedido: </strong>@Model.horarioPedido.ToString("HH:mm")</p><!-- Mostra somente o horário -->
+        <p><strong>Previsão de Entrega: </strong>@Model.previsaoEntrega.ToString("HH:mm")</p>
+        <p><strong>Endereco: </strong>@Model.endereco</p>
+        <h4 class="mt-4">Valor Total:
+            <span>R$@ViewBag.total.ToString("F2")</span>
+        </h4>
+        <a asp-action="NovoPedido" class="btn btn-outline-primary mt-3">Novo Pedido</a>
+    </div>
+</div>

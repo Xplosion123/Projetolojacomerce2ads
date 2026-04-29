@@ -1,0 +1,70 @@
+﻿@model LojaEcomerce.Models.Pedido
+
+<div class="container mt-5 ">
+    <div class="card shadow">
+        <div class="card-header bg-black text-white">
+            <h2 class="text-center">Monte o seu Hamburguer </h2>
+        </div>
+        <div class="card-body bg-dark-subtle">
+            <form action="NotaPedido" method="post">
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Tamanho:</label>
+                    <select asp-for="tamanho" class="form-select" required>
+                        <option value="1 Smash Burguer">1 Smash Burguer R$24,99)</option>
+                        <option value="2 Smash Burguer">2 Smash Burguer (R$29,99)</option>
+                        <option value="3 Smash Burguer">3 Smash Burguer (R$34,99)</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Sabor:</label>
+                    <select asp-for="sabor" class="form-select" required>
+                        <option value="X-Burguer">X-Burguer</option>
+                        <option value="X-Salada">X-Salada</option>
+                        <option value="X-Bacon">X-Bacon (+10% no valor)</option>
+                        <option value="X-Cheddar">X-Cheddar (+10% no valor)</option>
+                        <option value="X-Egg">X-Egg (+15% no valor)</option>
+                        <option value="X-Tudo">X-Tudo (+20% no valor)</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Combos (+R$10):</label>
+                    <select asp-for="carnes" class="form-select" required>
+                        <option value="Nenhuma">- Nenhuma -</option>
+                        <option value="Batata + Refrigerante">Batata + Refrigerante</option>
+                        <option value="Batata + Suco">Batata + Suco</option>
+                        <option value="Batata + Sobremesa">Batata + Sobremesa</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Adicionais (+R$5,00 cada)</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="adicionais" value="Bacon"/>
+                        <label class="form-check-label">Bacon</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="adicionais" value="Cheddar" />
+                        <label class="form-check-label">Cheddar</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="adicionais" value="Cebola" />
+                        <label class="form-check-label">Cebola</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="adicionais" value="Cebola roxa" />
+                        <label class="form-check-label">Cebola roxa</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="adicionais" value="Hamburguer" />
+                        <label class="form-check-label">Hamburguer</label>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Endereço de Entrega:</label>
+                    <input asp-for="endereco" class="form-control" placeholder="Bairro, Rua e Número" value="" required />
+                    <small class="text-muted">Taxa de entrega R$10,00 (Previsão de entrega 1h após o pedido)</small>
+                </div>
+                <button type="submit" class="btn btn-success w-100 btn-lg">Fazer Pedido</button>
+            </form>
+        </div>
+    </div>
+</div>
