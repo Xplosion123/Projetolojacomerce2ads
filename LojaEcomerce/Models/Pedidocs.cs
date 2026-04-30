@@ -22,14 +22,14 @@ using System.Security.Cryptography.X509Certificates;
                 "3 Smash Burguer" => 34.99,
                 _ => 0.00
             };
-            total *= sabor switch
+            total += sabor switch
             {
                 "X-Burguer" => 1.00,
                 "X-Salada" => 1.00,
-                "X-Bacon" => 1.10,
-                "X-Cheddar" => 1.10,
-                "X-Egg" => 1.15,
-                "X-Tudo" => 1.20,
+                "X-Bacon" => 5.00,
+                "X-Cheddar" => 5.00,
+                "X-Egg" => 5.00,
+                "X-Tudo" => 10.00,
                 _ => 1.00
             };
             total += carnes switch
