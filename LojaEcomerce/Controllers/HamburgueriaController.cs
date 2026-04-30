@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LojaEcomerce.Controllers
 {
-    public class PizzariaController : Controller
+    public class HamburgueriaController : Controller
     {
         public IActionResult NovoPedido()
         {
