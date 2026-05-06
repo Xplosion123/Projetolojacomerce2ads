@@ -52,6 +52,22 @@ namespace LojaEcomerce.Controllers
             return View(user);
         }
         //Método Sair
+
+        [HttpGet]
+        public IActionResult CriarConta() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CriarConta(LoginViewModel usuario)
+        {
+            if (ModelState.IsValid) 
+            {
+                _usuarioRepositorio.CriarConta(usuario);
+                return RedirectToAction("Login");
+            }
+            return View(usuario);
+        }
+
         public async Task<IActionResult> Sair()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

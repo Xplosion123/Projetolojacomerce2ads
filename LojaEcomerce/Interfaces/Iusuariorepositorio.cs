@@ -8,5 +8,6 @@ namespace LojaEcomerce.Interfaces
         //ser feito
         LoginViewModel Validar(string Email, string Senha);
 
+        void CriarConta(LoginViewModel usuario);
     }
 }

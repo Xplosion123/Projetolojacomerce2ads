@@ -17,6 +17,8 @@
 			</div>
 			<div>
 				<form asp-action="Login" method="post">
+					@Html.AntiForgeryToken()
+
 					<div asp-validation-summary="ModelOnly" class="text-danger small mb-3"> </div>
 					<div>
 						<label asp-for="Email"> </label>
@@ -31,7 +33,15 @@
 					<div>
 					<button>Entrar</button>
 					</div>
+					<div>
+						<p>Ainda não possui conta ?</p>
+						<a asp-action="CriarConta" asp-controller="Usuario">
+							Criar Nova Conta
+
+						</a>
+					</div>
 				</form>
+
 				</div>
 			</div>
 		</div>
